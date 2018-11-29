@@ -8,29 +8,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import recordstore.database.ChinookDatabase;
+import recordstore.models.Album;
 import recordstore.models.Artist;
 
-public class ArtistDao {
+public class AlbumDao {
 	private ChinookDatabase db;
 	
-	public ArtistDao(ChinookDatabase db) {
+	
+	public AlbumDao(ChinookDatabase db) {
 		this.db = db;
 	}
 	
-	  public Artist findArtist(long id) {
+	  public Album findAlbum(long id) {
 	        Connection connection = db.connect();
 	        PreparedStatement statement = null;
 	        ResultSet results = null;
 
 	        try {
-	            statement = connection.prepareStatement("SELECT * FROM Artist WHERE ArtistId = ?");
+	            statement = connection.prepareStatement("SELECT * FROM Album WHERE AlbumId = ?");
 	            statement.setLong(1, id);
 	            results = statement.executeQuery();
 
 	            if (results.next()) {
-	                String name = results.getString("Name");
-	                Artist artist = new Artist(id, name);
-	                return artist;
+	                String title = results.getString("Title");
+	                long artistid = results.getLong("ArtistID");
+	                Album album = new Album(id, title, artistid);
+	                return album;
 	            } else {
 	                return null;
 	            }
@@ -41,8 +44,8 @@ public class ArtistDao {
 	        }
 	  }
 	
-	public List<Artist> getAllArtists() {
-		ArrayList<Artist> list = new ArrayList<Artist>();
+	public List<Album> getAllAlbums() {
+		ArrayList<Album> list = new ArrayList<Album>();
 		
 		// Kootaan kaikki artistit
 		
@@ -51,12 +54,13 @@ public class ArtistDao {
 		ResultSet results = null;
 		
 		try {
-			statement = connection.prepareStatement("SELECT * FROM Artist ORDER BY Name ASC");
+			statement = connection.prepareStatement("SELECT * FROM Album ORDER BY Name ASC");
 			results = statement.executeQuery();
 			while (results.next()) {
-				long id = results.getLong("ArtistId");
-				String name = results.getString("Name");
-				list.add(new Artist(id, name));
+				long id = results.getLong("AlbumId");
+				String title = results.getString("Title");
+				long artistid = results.getLong("ArtistId");
+				list.add(new Album(id, title, artistid));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
