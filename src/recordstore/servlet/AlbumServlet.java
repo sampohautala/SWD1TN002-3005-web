@@ -26,10 +26,9 @@ public class AlbumServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		
-		long id = Long.parseLong(req.getParameter("id"));
-		Album album = albumDao.findAlbum(id);
+		List<Album> albums = albumDao.getAllAlbums();
 		
-		req.setAttribute("albums", album);
+		req.setAttribute("albums", albums);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/album.jsp");
 		dispatcher.include(req, resp);

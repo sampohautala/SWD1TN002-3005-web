@@ -9,7 +9,7 @@
 </head>
 <body>
 
-Kaikki artistit:
+Kaikki albumit:
 	<ul>
 <c:forEach items="${ albums }" var="album">
 	<li>

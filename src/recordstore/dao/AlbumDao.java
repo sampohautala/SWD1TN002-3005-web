@@ -43,18 +43,46 @@ public class AlbumDao {
 	        	db.close(results, statement, connection);
 	        }
 	  }
+	  
+	  
+	  public Album findAlbumByArtist(long id) {
+	        Connection connection = db.connect();
+	        PreparedStatement statement = null;
+	        ResultSet results = null;
+
+	        try {
+	            statement = connection.prepareStatement("SELECT AlbumId, Title, ArtistId FROM Album WHERE ArtistId = ?");
+	            statement.setLong(1, id);
+	            results = statement.executeQuery();
+
+	            if (results.next()) {
+	                String title = results.getString("Title");
+	                long artistid = results.getLong("ArtistID");
+	                Album album = new Album(id, title, artistid);
+	                return album;
+	            } else {
+	                return null;
+	            }
+	        } catch (SQLException e) {
+	            throw new RuntimeException(e);
+	        }finally {
+	        	db.close(results, statement, connection);
+	        }
+	  }
+	  
+	  
 	
 	public List<Album> getAllAlbums() {
 		ArrayList<Album> list = new ArrayList<Album>();
 		
-		// Kootaan kaikki artistit
+		// Kootaan kaikki albumit
 		
 		Connection connection = db.connect();
 		PreparedStatement statement = null;
 		ResultSet results = null;
 		
 		try {
-			statement = connection.prepareStatement("SELECT * FROM Album ORDER BY Name ASC");
+			statement = connection.prepareStatement("SELECT * FROM Album");
 			results = statement.executeQuery();
 			while (results.next()) {
 				long id = results.getLong("AlbumId");

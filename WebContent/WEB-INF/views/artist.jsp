@@ -9,11 +9,14 @@
 </head>
 <body>
 
- <form>
- 	<input type="text" name="nimi" /> <input type="submit" value="Lähetä" />
- 	<br>
- 
-	
- </form>
+<form method=get action=artist>
+	<input type=text name=id value="">
+	<input type=submit>
+</form>
+
+<h1><c:out value="${ artist.getName() }" /></h1>
+<h1><c:out value="${ album.getTitle() }" /></h1>
+
+
 </body>
 </html>

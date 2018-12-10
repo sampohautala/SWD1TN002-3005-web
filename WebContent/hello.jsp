@@ -9,14 +9,21 @@
 </head>
 <body>
 
-Kaikki artistit:
-	<ul>
-<c:forEach items="${ artists }" var="artist">
-	<li>
-		<a href="/RecordStore/artist?id=${ artist.getId() }"><c:out value="${ artist.getName() }" /></a>
-	</li>
-</c:forEach>
-</ul>
-
+ <form>
+ 	<input type="text" name="nimi" /> <input type="submit" value="Lähetä" />
+ 	<br>
+ 	<c:choose>
+ 	
+ 	<c:when test ="${ param.nimi != null }" >
+ 		Hello <c:out value="${ param.nimi}" />
+ 	</c:when>
+ 	
+ 	<c:when test ="${ param.nimi == null }" >
+ 		Terve tuntematon!
+	</c:when>
+	
+  </c:choose>
+ 
+ </form>
 </body>
 </html>
