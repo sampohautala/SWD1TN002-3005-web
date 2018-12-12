@@ -9,14 +9,21 @@
 </head>
 <body>
 
-<form method=get action=artist>
-	<input type=text name=id value="">
-	<input type=submit>
-</form>
+<p>Artist:<p>
 
 <h1><c:out value="${ artist.getName() }" /></h1>
-<h1><c:out value="${ album.getTitle() }" /></h1>
 
+<p>Albums:<p>
+
+	<ul>
+<c:forEach items="${ albumlist }" var="album">
+	<li>
+		<c:out value="${ album.getTitle() }" />
+	</li>
+</c:forEach>
+</ul>
+
+<a href="http://localhost:8080/RecordStore/artistlist">Takaisin etusivulle.</a>
 
 </body>
 </html>

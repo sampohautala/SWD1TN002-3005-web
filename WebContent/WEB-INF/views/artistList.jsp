@@ -9,7 +9,14 @@
 </head>
 <body>
 
-Kaikki artistit:
+<p>Hae artistia id:llä<p>
+<form method=get action=artist>
+	<input type=text name=id value="">
+	<input type=submit>
+</form>
+
+
+<p>Kaikki artistit:<p>
 	<ul>
 <c:forEach items="${ artists }" var="artist">
 	<li>

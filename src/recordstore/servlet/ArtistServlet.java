@@ -1,6 +1,7 @@
 package recordstore.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,10 +28,10 @@ public class ArtistServlet extends HttpServlet {
 		long id = Long.parseLong(req.getParameter("id"));
 		
 		Artist a = artistDao.findArtist(id);
-		Album album = albumDao.findAlbumByArtist(id);
+		List<Album> albumlist = albumDao.findAlbumByArtist(id);
 		
 		req.setAttribute("artist", a);
-		req.setAttribute("album", album);
+		req.setAttribute("albumlist", albumlist);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/artist.jsp");
 		dispatcher.include(req, resp);
