@@ -9,12 +9,11 @@
 </head>
 <body>
 
-<p>Artist:<p>
+<h3>Artist:</h3>
 
-<h1><c:out value="${ artist.getName() }" /></h1>
+<h2><c:out value="${ artist.getName() }" /></h2>
 
-<p>Albums:<p>
-
+<h3>Albums:</h3>
 	<ul>
 <c:forEach items="${ albumlist }" var="album">
 	<li>
@@ -23,7 +22,10 @@
 </c:forEach>
 </ul>
 
-<a href="http://localhost:8080/RecordStore/artistlist">Takaisin etusivulle.</a>
+<br>
+<a href="http://localhost:8080/RecordStore/artistlist">To Artistlist</a>
+<br>
+<a href="http://localhost:8080/RecordStore/album">To Albumlist</a>
 
 </body>
 </html>

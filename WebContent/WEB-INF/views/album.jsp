@@ -13,7 +13,7 @@ Kaikki albumit:
 	<ul>
 <c:forEach items="${ albums }" var="album">
 	<li>
-		<c:out value="${ album.getTitle() }" />
+		<a href="/RecordStore/artist?id=${ album.getArtistId() }"><c:out value="${ album.getTitle() }" /></a>
 	</li>
 </c:forEach>
 </ul>

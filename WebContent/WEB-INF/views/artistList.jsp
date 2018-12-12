@@ -9,6 +9,8 @@
 </head>
 <body>
 
+
+
 <p>Hae artistia id:llä<p>
 <form method=get action=artist>
 	<input type=text name=id value="">
